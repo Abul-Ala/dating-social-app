@@ -26,6 +26,15 @@ public class VoiceMatchController {
     }
 
     /**
+     * Real-time Server-Sent Events (SSE) stream: replaces polling with a single persistent push stream!
+     */
+    @GetMapping(value = "/queue/events", produces = org.springframework.http.MediaType.TEXT_EVENT_STREAM_VALUE)
+    public org.springframework.web.servlet.mvc.method.annotation.SseEmitter streamQueueEvents() {
+        User user = authService.getCurrentAuthenticatedUser();
+        return voiceMatchService.subscribeSse(user.getId());
+    }
+
+    /**
      * Enter voice match pool. If a peer is already waiting, pairs immediately!
      */
     @PostMapping("/queue/join")

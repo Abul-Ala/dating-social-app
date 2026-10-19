@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
@@ -47,6 +48,8 @@ public class VoiceMatchService {
     private final ConcurrentHashMap<String, VoiceRoomSession> activeRooms = new ConcurrentHashMap<>();
     // User ID -> roomId
     private final ConcurrentHashMap<Long, String> userToRoom = new ConcurrentHashMap<>();
+    // User ID -> SseEmitter for real-time Server-Sent Events
+    private final ConcurrentHashMap<Long, SseEmitter> userEmitters = new ConcurrentHashMap<>();
 
     public static class VoiceRoomSession {
         public String roomId;
@@ -136,15 +139,18 @@ public class VoiceMatchService {
 
             logger.info("Voice Match Room created: {} between user {} and user {}", roomId, peerId, currentUserId);
 
-            // Notify Peer via WebSocket
+            // Notify Peer via WebSocket and SSE
             VoiceMatchStatusDto peerStatus = buildStatusForUser(session, peerId);
+            VoiceMatchStatusDto currentStatus = buildStatusForUser(session, currentUserId);
+            sendSseEvent(peerId, "MATCHED", peerStatus);
+            sendSseEvent(currentUserId, "MATCHED", currentStatus);
             try {
                 messagingTemplate.convertAndSend("/topic/voice-match/" + peerId, peerStatus);
             } catch (Exception e) {
                 logger.warn("Could not notify peer {} via WebSocket: {}", peerId, e.getMessage());
             }
 
-            return buildStatusForUser(session, currentUserId);
+            return currentStatus;
         } else {
             // No peer available yet, add current user to waiting queue
             waitingQueue.add(currentUserId);
@@ -242,13 +248,16 @@ public class VoiceMatchService {
 
         // Notify peer of match request or mutual match
         VoiceMatchStatusDto peerStatus = buildStatusForUser(session, peerId);
+        VoiceMatchStatusDto currentStatus = buildStatusForUser(session, currentUserId);
+        sendSseEvent(peerId, session.isMutualMatch ? "MUTUAL_MATCH" : "PEER_MATCH_REQUEST", peerStatus);
+        sendSseEvent(currentUserId, session.isMutualMatch ? "MUTUAL_MATCH" : "MATCH_REQUEST_SENT", currentStatus);
         try {
             messagingTemplate.convertAndSend("/topic/voice-match/" + peerId, peerStatus);
         } catch (Exception e) {
             logger.warn("Failed to broadcast match request to peer: {}", e.getMessage());
         }
 
-        return buildStatusForUser(session, currentUserId);
+        return currentStatus;
     }
 
     /**
@@ -347,6 +356,38 @@ public class VoiceMatchService {
         } catch (Exception e) {
             logger.error("LiveKit token generation failed: {}", e.getMessage(), e);
             return null;
+        }
+    }
+
+    /**
+     * Subscribe to Server-Sent Events (SSE) for zero-polling real-time updates
+     */
+    public SseEmitter subscribeSse(Long userId) {
+        SseEmitter emitter = new SseEmitter(180000L); // 3 minutes
+        userEmitters.put(userId, emitter);
+
+        emitter.onCompletion(() -> userEmitters.remove(userId));
+        emitter.onTimeout(() -> {
+            userEmitters.remove(userId);
+            emitter.complete();
+        });
+        emitter.onError(e -> userEmitters.remove(userId));
+
+        // Join queue on SSE connect
+        VoiceMatchStatusDto initial = joinQueue(userId);
+        sendSseEvent(userId, initial.status(), initial);
+
+        return emitter;
+    }
+
+    private void sendSseEvent(Long userId, String eventName, Object data) {
+        SseEmitter emitter = userEmitters.get(userId);
+        if (emitter != null) {
+            try {
+                emitter.send(SseEmitter.event().name(eventName).data(data));
+            } catch (Exception e) {
+                userEmitters.remove(userId);
+            }
         }
     }
 }
