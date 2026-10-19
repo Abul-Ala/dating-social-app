@@ -66,6 +66,6 @@ app:
   cors:
     allowed-origins: "*"
   livekit:
-    url: ${LIVEKIT_URL:}
-    api-key: ${LIVEKIT_API_KEY:}
-    api-secret: ${LIVEKIT_API_SECRET:}
+    url: ${LIVEKIT_URL:wss://vibly-dukzgaut.livekit.cloud}
+    api-key: ${LIVEKIT_API_KEY:APIDEJNCYET5MCu}
+    api-secret: ${LIVEKIT_API_SECRET:1znSRh2ffVpP71Wfs5Zm1f9OgKEQy9FMuTzBoLdGG4cB}

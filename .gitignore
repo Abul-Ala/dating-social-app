@@ -1,0 +1,24 @@
+# Frontend is deployed in a separate Git repository on Vercel
+frontend/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Backend Target & Build
+backend/target/
+*.class
+
+# Maven
+.mvn/wrapper/maven-wrapper.jar
+
+# Android Gradle & Build caches
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/.idea/
+
+# Android output binaries (exclude latest apk from tracking if recompiled)
+*.ap_
+*.dex
