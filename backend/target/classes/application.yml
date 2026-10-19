@@ -65,3 +65,7 @@ app:
     expiration-ms: 86400000 # 24 hours
   cors:
     allowed-origins: "*"
+  livekit:
+    url: ${LIVEKIT_URL:wss://vibly-dukzgaut.livekit.cloud}
+    api-key: ${LIVEKIT_API_KEY:APIDEJNCYET5MCu}
+    api-secret: ${LIVEKIT_API_SECRET:1znSRh2ffVpP71Wfs5Zm1f9OgKEQy9FMuTzBoLdGG4cB}
