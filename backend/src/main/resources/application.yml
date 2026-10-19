@@ -65,3 +65,7 @@ app:
     expiration-ms: 86400000 # 24 hours
   cors:
     allowed-origins: "*"
+  livekit:
+    url: ${LIVEKIT_URL:}
+    api-key: ${LIVEKIT_API_KEY:}
+    api-secret: ${LIVEKIT_API_SECRET:}
