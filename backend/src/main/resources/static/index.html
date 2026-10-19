@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aura — Live Multi-User Testing & Chat Console</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0c10;
+      --surface: #141620;
+      --card: #1c1f2e;
+      --border: #292d42;
+      --primary: #ff3366;
+      --accent: #7928ca;
+      --cyan: #00f0ff;
+      --green: #30d158;
+      --text: #ffffff;
+      --text-muted: #9ea4ba;
+      --gradient: linear-gradient(135deg, #ff3366, #ff7a00);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+    body { background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; }
+    
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo { font-size: 24px; font-weight: 800; letter-spacing: 2px; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .status-badge { display: flex; align-items: center; gap: 8px; font-size: 13px; background: rgba(48, 209, 88, 0.15); color: var(--green); padding: 6px 14px; border-radius: 20px; font-weight: 600; }
+    .dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; box-shadow: 0 0 10px var(--green); }
+
+    .container { display: grid; grid-template-columns: 320px 1fr 340px; flex: 1; overflow: hidden; height: calc(100vh - 73px); }
+
+    .sidebar-left { background: var(--surface); border-right: 1px solid var(--border); display: flex; flex-direction: column; overflow-y: auto; }
+    .section-title { padding: 18px 20px 10px; font-size: 12px; font-weight: 700; text-transform: uppercase; color: var(--text-muted); letter-spacing: 1px; }
+    .user-card {
+      display: flex; align-items: center; gap: 14px; padding: 14px 20px; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer; transition: all 0.2s;
+    }
+    .user-card:hover { background: rgba(255,255,255,0.03); }
+    .user-card.active { background: rgba(255, 51, 102, 0.12); border-left: 4px solid var(--primary); }
+    .avatar-wrapper { position: relative; }
+    .avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border); }
+    .active .avatar { border-color: var(--primary); }
+    .online-indicator { width: 12px; height: 12px; background: var(--green); border: 2px solid var(--surface); border-radius: 50%; position: absolute; bottom: 0; right: 0; }
+    .user-info { flex: 1; min-width: 0; }
+    .user-name { font-weight: 700; font-size: 15px; margin-bottom: 2px; }
+    .user-role { font-size: 12px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    .register-box { margin: 16px; padding: 16px; background: var(--card); border-radius: 16px; border: 1px solid var(--border); }
+    .register-box h4 { font-size: 14px; font-weight: 700; margin-bottom: 10px; color: var(--primary); }
+    .input-group { margin-bottom: 10px; }
+    .input-group label { display: block; font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
+    .input-group input, .input-group select {
+      width: 100%; padding: 8px 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-size: 13px; outline: none;
+    }
+    .input-group input:focus, .input-group select:focus { border-color: var(--primary); }
+    .btn-create {
+      width: 100%; padding: 10px; background: var(--gradient); border: none; border-radius: 10px; color: white; font-weight: 700; cursor: pointer; font-size: 13px; transition: opacity 0.2s;
+    }
+
+    .chat-center { display: flex; flex-direction: column; background: var(--bg); overflow: hidden; }
+    .chat-header {
+      padding: 16px 24px; background: var(--surface); border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between;
+    }
+    .chat-header-user { display: flex; align-items: center; gap: 14px; }
+    .chat-header-user img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; }
+    .chat-header-title { font-weight: 700; font-size: 16px; }
+    .chat-header-sub { font-size: 12px; color: var(--green); }
+    .current-login-tag {
+      background: rgba(255,255,255,0.08); padding: 6px 14px; border-radius: 20px; font-size: 12px; color: var(--text-muted);
+    }
+    .current-login-tag span { color: var(--primary); font-weight: 700; }
+
+    .messages-area { flex: 1; padding: 24px; overflow-y: auto; display: flex; flex-direction: column; gap: 14px; }
+    .msg-row { display: flex; flex-direction: column; max-width: 65%; }
+    .msg-row.me { align-self: flex-end; align-items: flex-end; }
+    .msg-row.other { align-self: flex-start; align-items: flex-start; }
+    .sender-name { font-size: 11px; color: var(--text-muted); margin-bottom: 4px; }
+    .msg-bubble {
+      padding: 12px 18px; border-radius: 18px; font-size: 14px; line-height: 1.45; word-break: break-word;
+    }
+    .msg-row.me .msg-bubble { background: var(--gradient); color: white; border-bottom-right-radius: 4px; }
+    .msg-row.other .msg-bubble { background: var(--card); color: var(--text); border: 1px solid var(--border); border-bottom-left-radius: 4px; }
+    .msg-time { font-size: 10px; color: var(--text-muted); margin-top: 4px; }
+
+    .chat-input-bar {
+      padding: 16px 24px; background: var(--surface); border-top: 1px solid var(--border); display: flex; gap: 12px; align-items: center;
+    }
+    .chat-input {
+      flex: 1; padding: 12px 18px; background: var(--card); border: 1px solid var(--border); border-radius: 24px; color: var(--text); font-size: 14px; outline: none;
+    }
+    .chat-input:focus { border-color: var(--primary); }
+    .btn-send {
+      padding: 12px 24px; background: var(--gradient); border: none; border-radius: 24px; color: white; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; font-size: 14px;
+    }
+
+    .sidebar-right { background: var(--surface); border-left: 1px solid var(--border); padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 18px; }
+    .candidate-card {
+      background: var(--card); border-radius: 18px; overflow: hidden; border: 1px solid var(--border);
+    }
+    .candidate-card img { width: 100%; height: 260px; object-fit: cover; }
+    .candidate-details { padding: 16px; }
+    .candidate-name { font-size: 18px; font-weight: 800; }
+    .candidate-job { font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
+    .candidate-bio { font-size: 12px; color: #ccc; margin-bottom: 12px; line-height: 1.4; }
+    .compat-chip { display: inline-block; padding: 4px 10px; background: var(--accent); border-radius: 12px; font-size: 11px; font-weight: 700; color: white; margin-bottom: 12px; }
+    .swipe-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .btn-pass { padding: 10px; background: #262938; border: 1px solid #ff453a; color: #ff453a; border-radius: 12px; font-weight: 700; cursor: pointer; }
+    .btn-like { padding: 10px; background: var(--gradient); border: none; color: white; border-radius: 12px; font-weight: 700; cursor: pointer; }
+    .match-alert {
+      padding: 14px; background: rgba(255, 51, 102, 0.2); border: 1px solid var(--primary); border-radius: 12px; font-size: 13px; color: #fff; text-align: center; font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div style="display:flex; align-items:center; gap: 14px;">
+      <div class="logo">AURA</div>
+      <div style="font-size: 13px; color: var(--text-muted);">Multi-User Live Testing &amp; Chat Console</div>
+    </div>
+    <div class="status-badge">
+      <div class="dot"></div>
+      Backend Online (Port 8080)
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="sidebar-left">
+      <div class="section-title">Select Active User to Log In</div>
+      <div id="userList"></div>
+
+      <div class="register-box">
+        <h4>➕ Create New User</h4>
+        <div class="input-group">
+          <label>Display Name</label>
+          <input type="text" id="regName" placeholder="e.g. Maya Patel" />
+        </div>
+        <div class="input-group">
+          <label>Email</label>
+          <input type="email" id="regEmail" placeholder="maya@datingsocial.com" />
+        </div>
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" id="regPassword" value="password123" />
+        </div>
+        <div class="input-group">
+          <label>Gender &amp; Looking For</label>
+          <select id="regGender">
+            <option value="FEMALE">Female (Looking for Men)</option>
+            <option value="MALE">Male (Looking for Women)</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label>Birth Date</label>
+          <input type="date" id="regBirthDate" value="2000-05-15" />
+        </div>
+        <button class="btn-create" onclick="handleRegister()">Register &amp; Log In</button>
+      </div>
+    </div>
+
+    <div class="chat-center">
+      <div class="chat-header">
+        <div class="chat-header-user">
+          <img id="chatTargetAvatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800" />
+          <div>
+            <div class="chat-header-title" id="chatTargetName">Ananya Sharma</div>
+            <div class="chat-header-sub">● Online &amp; Matched</div>
+          </div>
+        </div>
+        <div class="current-login-tag">
+          Logged in as: <span id="currentLoggedUserName">Aarav Mehta</span>
+        </div>
+      </div>
+
+      <div class="messages-area" id="messagesArea"></div>
+
+      <div class="chat-input-bar">
+        <input type="text" class="chat-input" id="chatInput" placeholder="Type a reply... (Press Enter to Send)" onkeydown="if(event.key==='Enter') sendMessage()" />
+        <button class="btn-send" onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+
+    <div class="sidebar-right">
+      <div class="section-title">Swipe Candidates Nearby</div>
+      <div id="matchNotification" style="display:none;" class="match-alert">
+        🎉 It\'s a Mutual Match! Chat unlocked.
+      </div>
+      <div id="candidateContainer">
+        <div style="color: var(--text-muted); font-size: 13px; text-align: center; padding: 40px 0;">Loading candidates...</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API = 'http://localhost:8080/api/v1';
+
+    const predefinedUsers = [
+      { id: 1, email: 'user@datingsocial.com', name: 'Aarav Mehta', role: 'Male, 25 · Software Architect', avatar: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=800' },
+      { id: 2, email: 'ananya@datingsocial.com', name: 'Ananya Sharma', role: 'Female, 24 · Lead UX Designer', avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800' },
+      { id: 3, email: 'rhea@datingsocial.com', name: 'Rhea Kapoor', role: 'Female, 26 · Product Lead', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800' },
+      { id: 4, email: 'zoya@datingsocial.com', name: 'Zoya Khan', role: 'Female, 23 · Indie Filmmaker', avatar: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800' },
+      { id: 5, email: 'pooja@datingsocial.com', name: 'Pooja Verma', role: 'Female, 27 · Neuroscience', avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=800' }
+    ];
+
+    let currentUser = predefinedUsers[0];
+    let authToken = '';
+    let currentConversationId = 1;
+    let candidatesList = [];
+
+    function renderUserList() {
+      const container = document.getElementById('userList');
+      container.innerHTML = predefinedUsers.map(u => `
+        <div class="user-card ${u.id === currentUser.id ? 'active' : ''}" onclick="switchUser(${u.id})">
+          <div class="avatar-wrapper">
+            <img src="${u.avatar}" class="avatar" />
+            <div class="online-indicator"></div>
+          </div>
+          <div class="user-info">
+            <div class="user-name">${u.name}</div>
+            <div class="user-role">${u.role}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    async function switchUser(userId) {
+      const target = predefinedUsers.find(u => u.id === userId);
+      if (!target) return;
+      currentUser = target;
+      renderUserList();
+      document.getElementById('currentLoggedUserName').innerText = currentUser.name;
+
+      try {
+        const res = await fetch(`${API}/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: currentUser.email, password: 'password123' })
+        });
+        const data = await res.json();
+        authToken = data.token;
+        loadConversationsAndMessages();
+        loadDiscoveryFeed();
+      } catch (err) {
+        console.error('Login error', err);
+      }
+    }
+
+    async function loadConversationsAndMessages() {
+      try {
+        const convRes = await fetch(`${API}/chat/conversations`, {
+          headers: { 'Authorization': `Bearer ${authToken}` }
+        });
+        const convos = await convRes.json();
+        if (convos && convos.length > 0) {
+          const conv = convos[0];
+          currentConversationId = conv.id;
+          document.getElementById('chatTargetName').innerText = conv.otherUser.displayName;
+          document.getElementById('chatTargetAvatar').src = conv.otherUser.photos[0]?.photoUrl || 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800';
+
+          const msgRes = await fetch(`${API}/chat/conversations/${conv.id}/messages`, {
+            headers: { 'Authorization': `Bearer ${authToken}` }
+          });
+          const messages = await msgRes.json();
+          renderMessages(messages);
+        } else {
+          document.getElementById('messagesArea').innerHTML = `
+            <div style="color: var(--text-muted); text-align: center; margin-top: 40px;">
+              No active conversations yet. Swipe right on candidates on the right to match and chat!
+            </div>
+          `;
+        }
+      } catch (e) {
+        console.error('Failed to load conversations', e);
+      }
+    }
+
+    function renderMessages(messages) {
+      const area = document.getElementById('messagesArea');
+      area.innerHTML = messages.map(m => {
+        const isMe = m.senderId === currentUser.id;
+        return `
+          <div class="msg-row ${isMe ? 'me' : 'other'}">
+            <div class="sender-name">${m.senderName}</div>
+            <div class="msg-bubble">${m.content}</div>
+            <div class="msg-time">${new Date(m.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</div>
+          </div>
+        `;
+      }).join('');
+      area.scrollTop = area.scrollHeight;
+    }
+
+    async function sendMessage() {
+      const input = document.getElementById('chatInput');
+      const text = input.value.trim();
+      if (!text || !currentConversationId) return;
+
+      try {
+        await fetch(`${API}/chat/conversations/${currentConversationId}/messages`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authToken}`
+          },
+          body: JSON.stringify({ content: text, type: 'TEXT' })
+        });
+        input.value = '';
+        await loadConversationsAndMessages();
+      } catch (e) {
+        console.error('Send error', e);
+      }
+    }
+
+    async function loadDiscoveryFeed() {
+      try {
+        const res = await fetch(`${API}/discovery`, {
+          headers: { 'Authorization': `Bearer ${authToken}` }
+        });
+        candidatesList = await res.json();
+        renderCandidates();
+      } catch (e) {
+        console.error('Discovery error', e);
+      }
+    }
+
+    function renderCandidates() {
+      const container = document.getElementById('candidateContainer');
+      if (!candidatesList || candidatesList.length === 0) {
+        container.innerHTML = '<div style="color:var(--text-muted); text-align:center; padding:30px 0;">No more candidates nearby! Check back soon.</div>';
+        return;
+      }
+      const c = candidatesList[0];
+      container.innerHTML = `
+        <div class="candidate-card">
+          <img src="${c.photos[0]?.photoUrl || 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=800'}" />
+          <div class="candidate-details">
+            <div class="candidate-name">${c.displayName}, ${c.age}</div>
+            <div class="candidate-job">${c.occupation || 'Creative'} · ${c.city}</div>
+            <div class="compat-chip">⚡ ${c.compatibilityScore}% Compatibility</div>
+            <div class="candidate-bio">${c.bio || 'Exploring new connections and city coffee spots!'}</div>
+            <div class="swipe-actions">
+              <button class="btn-pass" onclick="swipe(${c.userId}, false)">PASS ✕</button>
+              <button class="btn-like" onclick="swipe(${c.userId}, true)">LIKE 💖</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    async function swipe(targetUserId, isLike) {
+      try {
+        const res = await fetch(`${API}/discovery/swipe`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authToken}`
+          },
+          body: JSON.stringify({ targetUserId: targetUserId, isLike: isLike })
+        });
+        const data = await res.json();
+        if (data.isMatch) {
+          const banner = document.getElementById('matchNotification');
+          banner.style.display = 'block';
+          setTimeout(() => banner.style.display = 'none', 5000);
+          loadConversationsAndMessages();
+        }
+        candidatesList.shift();
+        renderCandidates();
+      } catch (e) {
+        console.error('Swipe error', e);
+      }
+    }
+
+    async function handleRegister() {
+      const name = document.getElementById('regName').value.trim();
+      const email = document.getElementById('regEmail').value.trim();
+      const password = document.getElementById('regPassword').value;
+      const gender = document.getElementById('regGender').value;
+      const birthDate = document.getElementById('regBirthDate').value;
+
+      if (!name || !email) {
+        alert('Please fill out name and email');
+        return;
+      }
+
+      const body = {
+        displayName: name,
+        email: email,
+        password: password,
+        gender: gender,
+        interestedIn: gender === 'MALE' ? 'FEMALE' : 'MALE',
+        birthDate: birthDate,
+        city: 'Mumbai, India',
+        initialPhotoUrl: gender === 'MALE'
+          ? 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800'
+          : 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=800',
+        interestIds: [1, 2, 3]
+      };
+
+      try {
+        const res = await fetch(`${API}/auth/register`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body)
+        });
+        const data = await res.json();
+        if (data.userId) {
+          const newUser = {
+            id: data.userId,
+            email: email,
+            name: name,
+            role: `${gender === 'MALE' ? 'Male' : 'Female'} · Just Joined`,
+            avatar: body.initialPhotoUrl
+          };
+          predefinedUsers.push(newUser);
+          switchUser(data.userId);
+          alert('New account created & logged in successfully!');
+        } else {
+          alert('Registration response: ' + JSON.stringify(data));
+        }
+      } catch (e) {
+        alert('Registration failed: ' + e.message);
+      }
+    }
+
+    window.onload = () => {
+      renderUserList();
+      switchUser(1);
+      setInterval(() => {
+        if (authToken && currentConversationId) {
+          loadConversationsAndMessages();
+        }
+      }, 3000);
+    };
+  </script>
+</body>
+</html>

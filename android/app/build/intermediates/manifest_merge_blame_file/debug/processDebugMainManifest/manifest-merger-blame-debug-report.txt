@@ -1,0 +1,164 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.datingsocial.app"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="26"
+9        android:targetSdkVersion="35" />
+10
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:4:5-67
+11-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:4:22-64
+12    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+12-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:5:5-79
+12-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:5:22-76
+13    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+13-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:6:5-79
+13-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:6:22-76
+14    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+14-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:7:5-81
+14-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:7:22-78
+15    <uses-permission android:name="android.permission.CAMERA" />
+15-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:8:5-65
+15-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:8:22-62
+16    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+16-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:9:5-71
+16-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:9:22-68
+17
+18    <permission
+18-->[androidx.core:core:1.15.0] /Users/abul/.gradle/caches/8.13/transforms/1243066ca9105b8455096cb88679412e/transformed/core-1.15.0/AndroidManifest.xml:22:5-24:47
+19        android:name="com.datingsocial.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+19-->[androidx.core:core:1.15.0] /Users/abul/.gradle/caches/8.13/transforms/1243066ca9105b8455096cb88679412e/transformed/core-1.15.0/AndroidManifest.xml:23:9-81
+20        android:protectionLevel="signature" />
+20-->[androidx.core:core:1.15.0] /Users/abul/.gradle/caches/8.13/transforms/1243066ca9105b8455096cb88679412e/transformed/core-1.15.0/AndroidManifest.xml:24:9-44
+21
+22    <uses-permission android:name="com.datingsocial.app.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+22-->[androidx.core:core:1.15.0] /Users/abul/.gradle/caches/8.13/transforms/1243066ca9105b8455096cb88679412e/transformed/core-1.15.0/AndroidManifest.xml:26:5-97
+22-->[androidx.core:core:1.15.0] /Users/abul/.gradle/caches/8.13/transforms/1243066ca9105b8455096cb88679412e/transformed/core-1.15.0/AndroidManifest.xml:26:22-94
+23
+24    <application
+24-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:11:5-30:19
+25        android:name="com.datingsocial.app.DatingSocialApp"
+25-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:12:9-40
+26        android:allowBackup="true"
+26-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:13:9-35
+27        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+27-->[androidx.core:core:1.15.0] /Users/abul/.gradle/caches/8.13/transforms/1243066ca9105b8455096cb88679412e/transformed/core-1.15.0/AndroidManifest.xml:28:18-86
+28        android:debuggable="true"
+29        android:extractNativeLibs="false"
+30        android:icon="@android:drawable/sym_def_app_icon"
+30-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:14:9-58
+31        android:label="@string/app_name"
+31-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:15:9-41
+32        android:roundIcon="@android:drawable/sym_def_app_icon"
+32-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:16:9-63
+33        android:supportsRtl="true"
+33-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:17:9-35
+34        android:theme="@style/Theme.DatingSocialApp"
+34-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:18:9-53
+35        android:usesCleartextTraffic="true" >
+35-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:19:9-44
+36        <activity
+36-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:20:9-29:20
+37            android:name="com.datingsocial.app.MainActivity"
+37-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:21:13-41
+38            android:exported="true"
+38-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:22:13-36
+39            android:theme="@style/Theme.DatingSocialApp"
+39-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:23:13-57
+40            android:windowSoftInputMode="adjustResize" >
+40-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:24:13-55
+41            <intent-filter>
+41-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:25:13-28:29
+42                <action android:name="android.intent.action.MAIN" />
+42-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:26:17-69
+42-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:26:25-66
+43
+44                <category android:name="android.intent.category.LAUNCHER" />
+44-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:27:17-77
+44-->/Users/abul/projects lists/dating-social-app/android/app/src/main/AndroidManifest.xml:27:27-74
+45            </intent-filter>
+46        </activity>
+47        <activity
+47-->[androidx.compose.ui:ui-test-manifest:1.7.5] /Users/abul/.gradle/caches/8.13/transforms/b93ce6a5959b0802ac5fe1c35e3a33b7/transformed/ui-test-manifest-1.7.5/AndroidManifest.xml:23:9-25:39
+48            android:name="androidx.activity.ComponentActivity"
+48-->[androidx.compose.ui:ui-test-manifest:1.7.5] /Users/abul/.gradle/caches/8.13/transforms/b93ce6a5959b0802ac5fe1c35e3a33b7/transformed/ui-test-manifest-1.7.5/AndroidManifest.xml:24:13-63
+49            android:exported="true" />
+49-->[androidx.compose.ui:ui-test-manifest:1.7.5] /Users/abul/.gradle/caches/8.13/transforms/b93ce6a5959b0802ac5fe1c35e3a33b7/transformed/ui-test-manifest-1.7.5/AndroidManifest.xml:25:13-36
+50        <activity
+50-->[androidx.compose.ui:ui-tooling-android:1.7.5] /Users/abul/.gradle/caches/8.13/transforms/9049e47a45495efe58e3ab612b29d694/transformed/ui-tooling-release/AndroidManifest.xml:23:9-25:39
+51            android:name="androidx.compose.ui.tooling.PreviewActivity"
+51-->[androidx.compose.ui:ui-tooling-android:1.7.5] /Users/abul/.gradle/caches/8.13/transforms/9049e47a45495efe58e3ab612b29d694/transformed/ui-tooling-release/AndroidManifest.xml:24:13-71
+52            android:exported="true" />
+52-->[androidx.compose.ui:ui-tooling-android:1.7.5] /Users/abul/.gradle/caches/8.13/transforms/9049e47a45495efe58e3ab612b29d694/transformed/ui-tooling-release/AndroidManifest.xml:25:13-36
+53
+54        <provider
+54-->[androidx.emoji2:emoji2:1.3.0] /Users/abul/.gradle/caches/8.13/transforms/d2a7b3e6e9cbb11f18b8934466f232a9/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+55            android:name="androidx.startup.InitializationProvider"
+55-->[androidx.emoji2:emoji2:1.3.0] /Users/abul/.gradle/caches/8.13/transforms/d2a7b3e6e9cbb11f18b8934466f232a9/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
+56            android:authorities="com.datingsocial.app.androidx-startup"
+56-->[androidx.emoji2:emoji2:1.3.0] /Users/abul/.gradle/caches/8.13/transforms/d2a7b3e6e9cbb11f18b8934466f232a9/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
+57            android:exported="false" >
+57-->[androidx.emoji2:emoji2:1.3.0] /Users/abul/.gradle/caches/8.13/transforms/d2a7b3e6e9cbb11f18b8934466f232a9/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
+58            <meta-data
+58-->[androidx.emoji2:emoji2:1.3.0] /Users/abul/.gradle/caches/8.13/transforms/d2a7b3e6e9cbb11f18b8934466f232a9/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+59                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+59-->[androidx.emoji2:emoji2:1.3.0] /Users/abul/.gradle/caches/8.13/transforms/d2a7b3e6e9cbb11f18b8934466f232a9/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
+60                android:value="androidx.startup" />
+60-->[androidx.emoji2:emoji2:1.3.0] /Users/abul/.gradle/caches/8.13/transforms/d2a7b3e6e9cbb11f18b8934466f232a9/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
+61            <meta-data
+61-->[androidx.lifecycle:lifecycle-process:2.8.7] /Users/abul/.gradle/caches/8.13/transforms/11f4490488ebcc55c5fd4880af178d87/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:29:13-31:52
+62                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+62-->[androidx.lifecycle:lifecycle-process:2.8.7] /Users/abul/.gradle/caches/8.13/transforms/11f4490488ebcc55c5fd4880af178d87/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:30:17-78
+63                android:value="androidx.startup" />
+63-->[androidx.lifecycle:lifecycle-process:2.8.7] /Users/abul/.gradle/caches/8.13/transforms/11f4490488ebcc55c5fd4880af178d87/transformed/lifecycle-process-2.8.7/AndroidManifest.xml:31:17-49
+64            <meta-data
+64-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/abul/.gradle/caches/8.13/transforms/151302d9a08b57a63d267ee3f5b696f1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
+65                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+65-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/abul/.gradle/caches/8.13/transforms/151302d9a08b57a63d267ee3f5b696f1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+66                android:value="androidx.startup" />
+66-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/abul/.gradle/caches/8.13/transforms/151302d9a08b57a63d267ee3f5b696f1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
+67        </provider>
+68
+69        <receiver
+69-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/abul/.gradle/caches/8.13/transforms/151302d9a08b57a63d267ee3f5b696f1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
+70            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+70-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/abul/.gradle/caches/8.13/transforms/151302d9a08b57a63d267ee3f5b696f1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
+71            android:directBootAware="false"
+71-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/abul/.gradle/caches/8.13/transforms/151302d9a08b57a63d267ee3f5b696f1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
+72            android:enabled="true"
+72-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/abul/.gradle/caches/8.13/transforms/151302d9a08b57a63d267ee3f5b696f1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
+73            android:exported="true"
+73-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/abul/.gradle/caches/8.13/transforms/151302d9a08b57a63d267ee3f5b696f1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
+74            android:permission="android.permission.DUMP" >
+74-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/abul/.gradle/caches/8.13/transforms/151302d9a08b57a63d267ee3f5b696f1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
+75            <intent-filter>
+75-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/abul/.gradle/caches/8.13/transforms/151302d9a08b57a63d267ee3f5b696f1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
+76                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+76-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/abul/.gradle/caches/8.13/transforms/151302d9a08b57a63d267ee3f5b696f1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
+76-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/abul/.gradle/caches/8.13/transforms/151302d9a08b57a63d267ee3f5b696f1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
+77            </intent-filter>
+78            <intent-filter>
+78-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/abul/.gradle/caches/8.13/transforms/151302d9a08b57a63d267ee3f5b696f1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
+79                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+79-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/abul/.gradle/caches/8.13/transforms/151302d9a08b57a63d267ee3f5b696f1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
+79-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/abul/.gradle/caches/8.13/transforms/151302d9a08b57a63d267ee3f5b696f1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
+80            </intent-filter>
+81            <intent-filter>
+81-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/abul/.gradle/caches/8.13/transforms/151302d9a08b57a63d267ee3f5b696f1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
+82                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+82-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/abul/.gradle/caches/8.13/transforms/151302d9a08b57a63d267ee3f5b696f1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
+82-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/abul/.gradle/caches/8.13/transforms/151302d9a08b57a63d267ee3f5b696f1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
+83            </intent-filter>
+84            <intent-filter>
+84-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/abul/.gradle/caches/8.13/transforms/151302d9a08b57a63d267ee3f5b696f1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
+85                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+85-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/abul/.gradle/caches/8.13/transforms/151302d9a08b57a63d267ee3f5b696f1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
+85-->[androidx.profileinstaller:profileinstaller:1.3.1] /Users/abul/.gradle/caches/8.13/transforms/151302d9a08b57a63d267ee3f5b696f1/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
+86            </intent-filter>
+87        </receiver>
+88    </application>
+89
+90</manifest>

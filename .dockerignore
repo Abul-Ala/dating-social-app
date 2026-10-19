@@ -1,0 +1,7 @@
+android/
+dating-app-latest.apk
+.git/
+.idea/
+.DS_Store
+backend/target/
+backend/uploads/

@@ -1,0 +1,59 @@
+com.datingsocial.app-runtime-saveable-release-0 /Users/abul/.gradle/caches/8.13/transforms/0322cb432475f3e36a19faf726ba826c/transformed/runtime-saveable-release/res
+com.datingsocial.app-lifecycle-process-2.8.7-1 /Users/abul/.gradle/caches/8.13/transforms/11f4490488ebcc55c5fd4880af178d87/transformed/lifecycle-process-2.8.7/res
+com.datingsocial.app-core-1.15.0-2 /Users/abul/.gradle/caches/8.13/transforms/1243066ca9105b8455096cb88679412e/transformed/core-1.15.0/res
+com.datingsocial.app-profileinstaller-1.3.1-3 /Users/abul/.gradle/caches/8.13/transforms/151302d9a08b57a63d267ee3f5b696f1/transformed/profileinstaller-1.3.1/res
+com.datingsocial.app-savedstate-ktx-1.2.1-4 /Users/abul/.gradle/caches/8.13/transforms/173a4acaac81032c86cc6a098cc9a8ad/transformed/savedstate-ktx-1.2.1/res
+com.datingsocial.app-activity-ktx-1.9.3-5 /Users/abul/.gradle/caches/8.13/transforms/20b6cc124642cf3344d81d3b7ea7862a/transformed/activity-ktx-1.9.3/res
+com.datingsocial.app-ui-graphics-release-6 /Users/abul/.gradle/caches/8.13/transforms/2b47456961d8d86eb6546cbdc8a515d7/transformed/ui-graphics-release/res
+com.datingsocial.app-ui-tooling-data-release-7 /Users/abul/.gradle/caches/8.13/transforms/34c284925081775acb2363d0d6556abe/transformed/ui-tooling-data-release/res
+com.datingsocial.app-appcompat-resources-1.6.1-8 /Users/abul/.gradle/caches/8.13/transforms/4e45ae2b62abf436b0b44fb0e0853306/transformed/appcompat-resources-1.6.1/res
+com.datingsocial.app-ui-geometry-release-9 /Users/abul/.gradle/caches/8.13/transforms/4e920db6b4adba7249ed5c0d8ee7e508/transformed/ui-geometry-release/res
+com.datingsocial.app-runtime-release-10 /Users/abul/.gradle/caches/8.13/transforms/53c562e94f7fe0f663cc54c960b86f20/transformed/runtime-release/res
+com.datingsocial.app-startup-runtime-1.1.1-11 /Users/abul/.gradle/caches/8.13/transforms/545424add2ea24223bb86e0ad8cbce2b/transformed/startup-runtime-1.1.1/res
+com.datingsocial.app-navigation-compose-2.8.3-12 /Users/abul/.gradle/caches/8.13/transforms/5518d65902ebfff3a7b71e4c43e07c8d/transformed/navigation-compose-2.8.3/res
+com.datingsocial.app-animation-core-release-13 /Users/abul/.gradle/caches/8.13/transforms/5759a900eead505e90846ee4e40e6422/transformed/animation-core-release/res
+com.datingsocial.app-ui-util-release-14 /Users/abul/.gradle/caches/8.13/transforms/613f4d994fd9abc3c1733c1b10d178cb/transformed/ui-util-release/res
+com.datingsocial.app-material-icons-core-release-15 /Users/abul/.gradle/caches/8.13/transforms/623472bdd56c341d11b60bfcd074665c/transformed/material-icons-core-release/res
+com.datingsocial.app-ui-release-16 /Users/abul/.gradle/caches/8.13/transforms/688853240a1fca713c6c76b919b10385/transformed/ui-release/res
+com.datingsocial.app-lifecycle-viewmodel-ktx-2.8.7-17 /Users/abul/.gradle/caches/8.13/transforms/6bb938a18257a8312a5d329293f96ed7/transformed/lifecycle-viewmodel-ktx-2.8.7/res
+com.datingsocial.app-activity-1.9.3-18 /Users/abul/.gradle/caches/8.13/transforms/70689f05f3c511b6a672af4540253a5f/transformed/activity-1.9.3/res
+com.datingsocial.app-foundation-release-19 /Users/abul/.gradle/caches/8.13/transforms/78b4325b01290cb8ba2a2bf4a8ad9aa2/transformed/foundation-release/res
+com.datingsocial.app-customview-poolingcontainer-1.0.0-20 /Users/abul/.gradle/caches/8.13/transforms/7aef34b663896eee5cb67c10ee7c1f49/transformed/customview-poolingcontainer-1.0.0/res
+com.datingsocial.app-lifecycle-runtime-ktx-release-21 /Users/abul/.gradle/caches/8.13/transforms/7dc65e94f284e6b4f7d9b68eae90110d/transformed/lifecycle-runtime-ktx-release/res
+com.datingsocial.app-core-runtime-2.2.0-22 /Users/abul/.gradle/caches/8.13/transforms/7f91e6e7587b1b299d767d7afd15a26e/transformed/core-runtime-2.2.0/res
+com.datingsocial.app-material-ripple-release-23 /Users/abul/.gradle/caches/8.13/transforms/80bbf674e0f296fca33f39a8454716fd/transformed/material-ripple-release/res
+com.datingsocial.app-material-release-24 /Users/abul/.gradle/caches/8.13/transforms/862d7746c1bf6a878f6f4091334f5b1d/transformed/material-release/res
+com.datingsocial.app-material3-release-25 /Users/abul/.gradle/caches/8.13/transforms/871d6e10da3e7b5878efd8559cf8026a/transformed/material3-release/res
+com.datingsocial.app-ui-tooling-release-26 /Users/abul/.gradle/caches/8.13/transforms/9049e47a45495efe58e3ab612b29d694/transformed/ui-tooling-release/res
+com.datingsocial.app-navigation-runtime-ktx-2.8.3-27 /Users/abul/.gradle/caches/8.13/transforms/92b924459148a1fa9d983f48f105f712/transformed/navigation-runtime-ktx-2.8.3/res
+com.datingsocial.app-navigation-common-2.8.3-28 /Users/abul/.gradle/caches/8.13/transforms/92c4628d2eff96b9c82d31ec0548e27e/transformed/navigation-common-2.8.3/res
+com.datingsocial.app-ui-unit-release-29 /Users/abul/.gradle/caches/8.13/transforms/9cd3afeb57ca7544ac594eef06bc12ca/transformed/ui-unit-release/res
+com.datingsocial.app-navigation-runtime-2.8.3-30 /Users/abul/.gradle/caches/8.13/transforms/a9127421ff6825366c9e595e36c7b0bd/transformed/navigation-runtime-2.8.3/res
+com.datingsocial.app-ui-text-release-31 /Users/abul/.gradle/caches/8.13/transforms/b3c531146eb570bc862cbbce8b3d3656/transformed/ui-text-release/res
+com.datingsocial.app-animation-release-32 /Users/abul/.gradle/caches/8.13/transforms/b7fa742d0d3c242ef4daabab5a1d1f6b/transformed/animation-release/res
+com.datingsocial.app-core-ktx-1.15.0-33 /Users/abul/.gradle/caches/8.13/transforms/b8803ba814a0a845993ac4865c23b843/transformed/core-ktx-1.15.0/res
+com.datingsocial.app-ui-test-manifest-1.7.5-34 /Users/abul/.gradle/caches/8.13/transforms/b93ce6a5959b0802ac5fe1c35e3a33b7/transformed/ui-test-manifest-1.7.5/res
+com.datingsocial.app-lifecycle-runtime-release-35 /Users/abul/.gradle/caches/8.13/transforms/b9b244e1dbb2fc2039ea6ff5ece85326/transformed/lifecycle-runtime-release/res
+com.datingsocial.app-lifecycle-viewmodel-compose-release-36 /Users/abul/.gradle/caches/8.13/transforms/be6d9d10e86dfb4118470c97a7a8414e/transformed/lifecycle-viewmodel-compose-release/res
+com.datingsocial.app-lifecycle-livedata-core-2.8.7-37 /Users/abul/.gradle/caches/8.13/transforms/bf0965a797717f8e953a707f21364b3b/transformed/lifecycle-livedata-core-2.8.7/res
+com.datingsocial.app-activity-compose-1.9.3-38 /Users/abul/.gradle/caches/8.13/transforms/bfa16a5e2af5c5134dc7c51958d50121/transformed/activity-compose-1.9.3/res
+com.datingsocial.app-lifecycle-runtime-compose-release-39 /Users/abul/.gradle/caches/8.13/transforms/c3742c958e74fe772ba95773c9f6c42d/transformed/lifecycle-runtime-compose-release/res
+com.datingsocial.app-foundation-layout-release-40 /Users/abul/.gradle/caches/8.13/transforms/c49e3ceda051f97925cc2146cbc655b6/transformed/foundation-layout-release/res
+com.datingsocial.app-graphics-path-1.0.1-41 /Users/abul/.gradle/caches/8.13/transforms/c52fe7f49353650bb0989c8dcde93467/transformed/graphics-path-1.0.1/res
+com.datingsocial.app-lifecycle-viewmodel-release-42 /Users/abul/.gradle/caches/8.13/transforms/ca21b7a19314acc2fb345d9e931e8daf/transformed/lifecycle-viewmodel-release/res
+com.datingsocial.app-emoji2-1.3.0-43 /Users/abul/.gradle/caches/8.13/transforms/d2a7b3e6e9cbb11f18b8934466f232a9/transformed/emoji2-1.3.0/res
+com.datingsocial.app-lifecycle-viewmodel-savedstate-2.8.7-44 /Users/abul/.gradle/caches/8.13/transforms/d62e6ee8c7d1563b6700bd96ec1fd20e/transformed/lifecycle-viewmodel-savedstate-2.8.7/res
+com.datingsocial.app-navigation-common-ktx-2.8.3-45 /Users/abul/.gradle/caches/8.13/transforms/da693540489f2f9fd708a17726f5dcf2/transformed/navigation-common-ktx-2.8.3/res
+com.datingsocial.app-savedstate-1.2.1-46 /Users/abul/.gradle/caches/8.13/transforms/e22d1bb320585004d20aa539d06a3587/transformed/savedstate-1.2.1/res
+com.datingsocial.app-coil-base-2.7.0-47 /Users/abul/.gradle/caches/8.13/transforms/ed1b69ac8ff049df118a42abbef6ce51/transformed/coil-base-2.7.0/res
+com.datingsocial.app-ui-tooling-preview-release-48 /Users/abul/.gradle/caches/8.13/transforms/f14849d2ab5530b34f417e5b2a6e520d/transformed/ui-tooling-preview-release/res
+com.datingsocial.app-material-icons-extended-release-49 /Users/abul/.gradle/caches/8.13/transforms/f76d891181d39e37d21fafa43c6df0fd/transformed/material-icons-extended-release/res
+com.datingsocial.app-tracing-1.2.0-50 /Users/abul/.gradle/caches/8.13/transforms/f7e85cf793db0f99436774a14b344901/transformed/tracing-1.2.0/res
+com.datingsocial.app-annotation-experimental-1.4.1-51 /Users/abul/.gradle/caches/8.13/transforms/fb522aa8e276102a82a7dc23e81292dc/transformed/annotation-experimental-1.4.1/res
+com.datingsocial.app-resValues-52 /Users/abul/projects lists/dating-social-app/android/app/build/generated/res/resValues/debug
+com.datingsocial.app-updated_navigation_xml-53 /Users/abul/projects lists/dating-social-app/android/app/build/generated/updated_navigation_xml/debug
+com.datingsocial.app-packageDebugResources-54 /Users/abul/projects lists/dating-social-app/android/app/build/intermediates/incremental/debug/packageDebugResources/merged.dir
+com.datingsocial.app-packageDebugResources-55 /Users/abul/projects lists/dating-social-app/android/app/build/intermediates/incremental/debug/packageDebugResources/stripped.dir
+com.datingsocial.app-debug-56 /Users/abul/projects lists/dating-social-app/android/app/build/intermediates/merged_res/debug/mergeDebugResources
+com.datingsocial.app-debug-57 /Users/abul/projects lists/dating-social-app/android/app/src/debug/res
+com.datingsocial.app-main-58 /Users/abul/projects lists/dating-social-app/android/app/src/main/res
