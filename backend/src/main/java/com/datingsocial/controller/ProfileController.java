@@ -43,6 +43,21 @@ public class ProfileController {
         return ResponseEntity.ok(profileService.updateProfile(user.getId(), request));
     }
 
+    public record UpdateLocationRequest(Double latitude, Double longitude, String city) {}
+
+    @PutMapping("/profiles/me/location")
+    public ResponseEntity<UserProfileDto> updateMyLocation(@RequestBody UpdateLocationRequest request) {
+        User user = authService.getCurrentAuthenticatedUser();
+        UpdateProfileRequest profileRequest = new UpdateProfileRequest(
+            null, null, null,
+            request.city(),
+            request.latitude(),
+            request.longitude(),
+            null, null, null, null
+        );
+        return ResponseEntity.ok(profileService.updateProfile(user.getId(), profileRequest));
+    }
+
     @GetMapping("/profiles/{userId}")
     public ResponseEntity<UserProfileDto> getProfileById(@PathVariable Long userId) {
         return ResponseEntity.ok(profileService.getProfileByUserId(userId));
