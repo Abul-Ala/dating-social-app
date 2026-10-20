@@ -16,8 +16,8 @@ object ApiClient {
     private const val KEY_AUTH_TOKEN = "auth_token"
     private const val KEY_USER_ID = "current_user_id"
 
-    // Default ngrok public tunnel URL for real-device testing over internet
-    const val DEFAULT_URL = "https://usage-wharf-reoccupy.ngrok-free.dev/api/v1/"
+    // Production cloud backend URL on Railway
+    const val DEFAULT_URL = "https://dating-social-app-production.up.railway.app/api/v1/"
 
     private var _baseUrl: String = DEFAULT_URL
     var authToken: String? = null
@@ -36,7 +36,12 @@ object ApiClient {
 
     fun init(context: Context) {
         prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-        val savedUrl = prefs?.getString(KEY_BASE_URL, DEFAULT_URL) ?: DEFAULT_URL
+        var savedUrl = prefs?.getString(KEY_BASE_URL, DEFAULT_URL) ?: DEFAULT_URL
+        // Automatically migrate away from legacy local tunnels (ngrok/localhost) to Railway
+        if (savedUrl.contains("ngrok") || savedUrl.contains("localhost") || savedUrl.contains("10.0.2.2")) {
+            savedUrl = DEFAULT_URL
+            prefs?.edit()?.putString(KEY_BASE_URL, DEFAULT_URL)?.apply()
+        }
         authToken = prefs?.getString(KEY_AUTH_TOKEN, null)
         val savedUserId = prefs?.getLong(KEY_USER_ID, -1L) ?: -1L
         if (savedUserId != -1L) currentUserId = savedUserId
@@ -55,8 +60,6 @@ object ApiClient {
         authToken?.let { token ->
             requestBuilder.header("Authorization", "Bearer $token")
         }
-        // Essential for ngrok: bypass interstitial browser warning screen
-        requestBuilder.header("ngrok-skip-browser-warning", "true")
         requestBuilder.header("User-Agent", "AuraDatingApp/1.0.0")
         chain.proceed(requestBuilder.build())
     }

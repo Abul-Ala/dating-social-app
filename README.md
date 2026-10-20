@@ -20,6 +20,13 @@ dating-social-app/
 │   ├── src/main/resources/   # application.yml (H2 in-memory dev + PostgreSQL prod)
 │   ├── pom.xml
 │   └── docker-compose.yml    # PostgreSQL 16 & Redis 7 containers
+├── frontend/                 # Modern React 18 + Vite + TypeScript Web Client
+│   ├── src/
+│   │   ├── api/              # Fetch API client & TypeScript interfaces
+│   │   ├── components/       # SwipeableCard, ActionButtons, MatchModal, StoriesTray
+│   │   ├── screens/          # Discover, Matches, Chat, Profile, EditProfile, Auth
+│   │   └── theme/            # Dark Obsidian theme tokens & gradients
+│   └── package.json
 └── android/                  # Native Android (Kotlin + Jetpack Compose + Material 3)
     ├── app/src/main/java/com/datingsocial/app/
     │   ├── data/             # Retrofit API client, data models & DemoDataProvider
@@ -105,3 +112,23 @@ The generated APK will be at:
 1. Open Android Studio.
 2. Select **Open** and choose `/Users/abul/projects lists/intruder-selfie-app/dating-social-app/android`.
 3. Press **Run** (`Shift + F10`) to launch on an Android Emulator or connected physical device.
+
+---
+
+## 💻 3. React Web App Quickstart
+
+### Run with Vite Dev Server:
+```bash
+cd frontend
+npm install
+npm run dev
+```
+Open **`http://localhost:5173/`** in any web browser.
+
+### Build Production Bundle:
+```bash
+cd frontend
+npm run build
+npm run preview
+```
+
