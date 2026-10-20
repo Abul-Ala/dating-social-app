@@ -29,6 +29,7 @@ public class VideoCallService {
     private final ProfileService profileService;
     private final UserActivityTracker userActivityTracker;
     private final SimpMessagingTemplate messagingTemplate;
+    private final AppEventService appEventService;
 
     @Value("${app.livekit.url:wss://vibly-dukzgaut.livekit.cloud}")
     private String livekitUrl;
@@ -79,12 +80,14 @@ public class VideoCallService {
         UserRepository userRepository,
         ProfileService profileService,
         UserActivityTracker userActivityTracker,
-        SimpMessagingTemplate messagingTemplate
+        SimpMessagingTemplate messagingTemplate,
+        AppEventService appEventService
     ) {
         this.userRepository = userRepository;
         this.profileService = profileService;
         this.userActivityTracker = userActivityTracker;
         this.messagingTemplate = messagingTemplate;
+        this.appEventService = appEventService;
     }
 
     /**
@@ -397,6 +400,12 @@ public class VideoCallService {
     }
 
     private void sendSseEvent(Long userId, String eventName, Object data) {
+        // Dispatch to unified app event stream
+        try {
+            appEventService.sendEvent(userId, eventName, data);
+        } catch (Exception ignored) {}
+
+        // Also dispatch to local emitters for backward compatibility
         SseEmitter emitter = userEmitters.get(userId);
         if (emitter != null) {
             try {

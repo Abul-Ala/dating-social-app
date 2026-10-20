@@ -1,8 +1,13 @@
+com/datingsocial/controller/VideoCallController.class
 com/datingsocial/dto/SwipeRequest.class
 com/datingsocial/controller/MatchController.class
 com/datingsocial/dto/MessageDto.class
 com/datingsocial/service/UserActivityTracker.class
+com/datingsocial/controller/VoiceMatchController.class
+com/datingsocial/service/VideoCallService.class
+com/datingsocial/controller/AppEventController.class
 com/datingsocial/repository/UserProfileRepository.class
+com/datingsocial/dto/VoiceSignalDto.class
 com/datingsocial/config/SecurityConfig.class
 com/datingsocial/model/Message.class
 com/datingsocial/repository/ReportRepository.class
@@ -13,7 +18,9 @@ com/datingsocial/model/Block.class
 com/datingsocial/dto/AuthResponse.class
 com/datingsocial/model/Conversation.class
 com/datingsocial/dto/SwipeResponse.class
+com/datingsocial/service/VoiceMatchService.class
 com/datingsocial/dto/StoryDto.class
+com/datingsocial/dto/VideoCallSignalDto.class
 com/datingsocial/model/Gender.class
 com/datingsocial/service/MatchingService.class
 com/datingsocial/dto/LikeNotificationDto.class
@@ -49,9 +56,12 @@ com/datingsocial/model/Like.class
 com/datingsocial/dto/UserStoryGroupDto.class
 com/datingsocial/controller/SafetyController.class
 com/datingsocial/DatingSocialApplication.class
+com/datingsocial/service/VideoCallService$VideoCallSession.class
+com/datingsocial/dto/VoiceMatchStatusDto.class
 com/datingsocial/model/Role.class
 com/datingsocial/security/JwtAuthFilter.class
 com/datingsocial/model/UserPhoto.class
+com/datingsocial/service/VoiceMatchService$VoiceRoomSession.class
 com/datingsocial/controller/HealthController.class
 com/datingsocial/repository/MessageRepository.class
 com/datingsocial/repository/InterestRepository.class
@@ -62,7 +72,9 @@ com/datingsocial/controller/ChatController.class
 com/datingsocial/model/Match.class
 com/datingsocial/controller/DiscoveryController.class
 com/datingsocial/dto/ReportRequest.class
+com/datingsocial/dto/InitiateVideoCallRequest.class
 com/datingsocial/service/DiscoveryService.class
+com/datingsocial/service/AppEventService.class
 com/datingsocial/repository/UserPhotoRepository.class
 com/datingsocial/config/WebSocketConfig.class
 com/datingsocial/security/UserDetailsServiceImpl.class
@@ -70,3 +82,4 @@ com/datingsocial/model/ReportStatus.class
 com/datingsocial/dto/ConversationDto.class
 com/datingsocial/controller/AuthController.class
 com/datingsocial/service/SafetyService.class
+com/datingsocial/dto/VideoCallDto.class

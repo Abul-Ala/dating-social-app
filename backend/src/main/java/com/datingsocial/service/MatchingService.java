@@ -25,6 +25,7 @@ public class MatchingService {
     private final ProfileService profileService;
     private final SimpMessagingTemplate messagingTemplate;
     private final BlockRepository blockRepository;
+    private final AppEventService appEventService;
 
     public MatchingService(
         LikeRepository likeRepository,
@@ -34,7 +35,8 @@ public class MatchingService {
         UserProfileRepository userProfileRepository,
         ProfileService profileService,
         SimpMessagingTemplate messagingTemplate,
-        BlockRepository blockRepository
+        BlockRepository blockRepository,
+        AppEventService appEventService
     ) {
         this.likeRepository = likeRepository;
         this.matchRepository = matchRepository;
@@ -44,6 +46,7 @@ public class MatchingService {
         this.profileService = profileService;
         this.messagingTemplate = messagingTemplate;
         this.blockRepository = blockRepository;
+        this.appEventService = appEventService;
     }
 
     @Transactional
@@ -92,8 +95,9 @@ public class MatchingService {
                 hasMutualLike
             );
             messagingTemplate.convertAndSend("/topic/user/" + targetUserId + "/likes", notifyDto);
+            appEventService.sendEvent(targetUserId, "NEW_LIKE", notifyDto);
         } catch (Exception e) {
-            // Ignore WebSocket delivery failure in background
+            // Ignore delivery failure in background
         }
 
         if (hasMutualLike) {
@@ -122,14 +126,18 @@ public class MatchingService {
                 .orElse(null);
             UserProfileDto targetDto = targetProfile != null ? profileService.toDto(targetProfile, null, 95) : null;
 
-            // Notify target user in real-time via WebSocket
+            // Notify both users in real-time via WebSocket and SSE
             try {
                 UserProfile currentProfile = userProfileRepository.findByUserId(currentUserId).orElse(null);
                 UserProfileDto currentDto = currentProfile != null ? profileService.toDto(currentProfile, null, 95) : null;
                 MatchDto notifyDto = new MatchDto(match.getId(), conversation.getId(), currentDto, match.getMatchedAt());
                 messagingTemplate.convertAndSend("/topic/user/" + targetUserId + "/matches", notifyDto);
+                appEventService.sendEvent(targetUserId, "NEW_MATCH", notifyDto);
+
+                MatchDto currentNotifyDto = new MatchDto(match.getId(), conversation.getId(), targetDto, match.getMatchedAt());
+                appEventService.sendEvent(currentUserId, "NEW_MATCH", currentNotifyDto);
             } catch (Exception e) {
-                // Ignore WebSocket delivery failure in background
+                // Ignore delivery failure in background
             }
 
             return SwipeResponse.matched(match.getId(), conversation.getId(), targetDto);

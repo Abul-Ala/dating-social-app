@@ -4,6 +4,7 @@
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/config/SecurityConfig.java
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/config/WebConfig.java
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/config/WebSocketConfig.java
+/Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/controller/AppEventController.java
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/controller/AuthController.java
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/controller/ChatController.java
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/controller/DiscoveryController.java
@@ -12,10 +13,13 @@
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/controller/ProfileController.java
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/controller/SafetyController.java
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/controller/StoryController.java
+/Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/controller/VideoCallController.java
+/Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/controller/VoiceMatchController.java
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/dto/AuthRequest.java
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/dto/AuthResponse.java
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/dto/BlockRequest.java
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/dto/ConversationDto.java
+/Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/dto/InitiateVideoCallRequest.java
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/dto/InterestDto.java
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/dto/LikeNotificationDto.java
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/dto/MatchDto.java
@@ -30,6 +34,10 @@
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/dto/UpdateProfileRequest.java
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/dto/UserProfileDto.java
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/dto/UserStoryGroupDto.java
+/Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/dto/VideoCallDto.java
+/Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/dto/VideoCallSignalDto.java
+/Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/dto/VoiceMatchStatusDto.java
+/Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/dto/VoiceSignalDto.java
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/model/Block.java
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/model/Conversation.java
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/model/Gender.java
@@ -62,6 +70,7 @@
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/security/JwtUtils.java
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/security/UserDetailsServiceImpl.java
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/security/UserPrincipal.java
+/Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/service/AppEventService.java
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/service/AuthService.java
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/service/ChatService.java
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/service/DiscoveryService.java
@@ -70,3 +79,5 @@
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/service/SafetyService.java
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/service/StoryService.java
 /Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/service/UserActivityTracker.java
+/Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/service/VideoCallService.java
+/Users/abul/projects lists/dating-social-app/backend/src/main/java/com/datingsocial/service/VoiceMatchService.java

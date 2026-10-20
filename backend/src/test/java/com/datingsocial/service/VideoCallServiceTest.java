@@ -35,6 +35,9 @@ class VideoCallServiceTest {
     @Mock
     private SimpMessagingTemplate messagingTemplate;
 
+    @Mock
+    private AppEventService appEventService;
+
     @InjectMocks
     private VideoCallService videoCallService;
 

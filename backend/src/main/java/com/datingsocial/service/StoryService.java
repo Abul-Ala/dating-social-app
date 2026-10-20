@@ -28,15 +28,18 @@ public class StoryService {
     private final StoryRepository storyRepository;
     private final UserRepository userRepository;
     private final BlockRepository blockRepository;
+    private final AppEventService appEventService;
 
     public StoryService(
         StoryRepository storyRepository,
         UserRepository userRepository,
-        BlockRepository blockRepository
+        BlockRepository blockRepository,
+        AppEventService appEventService
     ) {
         this.storyRepository = storyRepository;
         this.userRepository = userRepository;
         this.blockRepository = blockRepository;
+        this.appEventService = appEventService;
     }
 
     public StoryDto createStory(Long userId, MultipartFile file, String caption) throws IOException {
@@ -65,7 +68,14 @@ public class StoryService {
         Story story = new Story(user, mediaUrl, caption);
         Story saved = storyRepository.save(story);
 
-        return toDto(saved);
+        StoryDto dto = toDto(saved);
+        try {
+            appEventService.broadcastEvent("NEW_STORY", dto);
+        } catch (Exception e) {
+            // ignore
+        }
+
+        return dto;
     }
 
     @Transactional(readOnly = true)

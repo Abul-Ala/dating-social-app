@@ -24,6 +24,7 @@ public class ChatService {
     private final BlockRepository blockRepository;
     private final ProfileService profileService;
     private final SimpMessagingTemplate messagingTemplate;
+    private final AppEventService appEventService;
 
     public ChatService(
         ConversationRepository conversationRepository,
@@ -32,7 +33,8 @@ public class ChatService {
         UserProfileRepository userProfileRepository,
         BlockRepository blockRepository,
         ProfileService profileService,
-        SimpMessagingTemplate messagingTemplate
+        SimpMessagingTemplate messagingTemplate,
+        AppEventService appEventService
     ) {
         this.conversationRepository = conversationRepository;
         this.messageRepository = messageRepository;
@@ -41,6 +43,7 @@ public class ChatService {
         this.blockRepository = blockRepository;
         this.profileService = profileService;
         this.messagingTemplate = messagingTemplate;
+        this.appEventService = appEventService;
     }
 
     @Transactional(readOnly = true)
@@ -119,6 +122,14 @@ public class ChatService {
         conversationRepository.save(conversation);
 
         MessageDto messageDto = toDto(message);
+
+        // Real-time dispatch via Server-Sent Events (SSE)
+        try {
+            appEventService.sendEvent(receiver.getId(), "NEW_MESSAGE", messageDto);
+            appEventService.sendEvent(senderId, "MESSAGE_SENT", messageDto);
+        } catch (Exception e) {
+            // ignore
+        }
 
         // Broadcast to WebSocket subscribers for this conversation
         try {
