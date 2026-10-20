@@ -142,6 +142,42 @@ public class ChatService {
         return messageDto;
     }
 
+    @Transactional(readOnly = true)
+    public void sendTypingStatus(Long conversationId, Long senderId, boolean isTyping) {
+        Conversation conversation = conversationRepository.findById(conversationId)
+            .orElseThrow(() -> new RuntimeException("Conversation not found"));
+
+        validateUserInConversation(conversation, senderId);
+
+        User sender = userRepository.findById(senderId)
+            .orElseThrow(() -> new RuntimeException("Sender not found"));
+        User receiver = conversation.getMatch().getOtherUser(senderId);
+
+        String senderName = "Someone";
+        if (sender.getProfile() != null && sender.getProfile().getDisplayName() != null) {
+            senderName = sender.getProfile().getDisplayName();
+        }
+
+        java.util.Map<String, Object> payload = java.util.Map.of(
+            "conversationId", conversationId,
+            "senderId", senderId,
+            "senderName", senderName,
+            "isTyping", isTyping
+        );
+
+        try {
+            appEventService.sendEvent(receiver.getId(), "TYPING_STATUS", payload);
+        } catch (Exception e) {
+            // ignore
+        }
+
+        try {
+            messagingTemplate.convertAndSend("/topic/conversation/" + conversationId + "/typing", payload);
+        } catch (Exception e) {
+            // ignore
+        }
+    }
+
     private void validateUserInConversation(Conversation conversation, Long userId) {
         Match match = conversation.getMatch();
         if (match == null || !match.isActive()) {

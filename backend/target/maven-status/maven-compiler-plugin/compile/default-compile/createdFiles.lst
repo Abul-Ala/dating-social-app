@@ -68,6 +68,7 @@ com/datingsocial/repository/InterestRepository.class
 com/datingsocial/repository/ConversationRepository.class
 com/datingsocial/model/User.class
 com/datingsocial/dto/MatchDto.class
+com/datingsocial/controller/ChatController$TypingStatusRequest.class
 com/datingsocial/controller/ChatController.class
 com/datingsocial/model/Match.class
 com/datingsocial/controller/DiscoveryController.class

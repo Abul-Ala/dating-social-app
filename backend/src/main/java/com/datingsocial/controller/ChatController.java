@@ -52,4 +52,22 @@ public class ChatController {
         MessageDto message = chatService.sendMessage(id, user.getId(), request);
         return ResponseEntity.ok(message);
     }
+
+    public record TypingStatusRequest(Boolean isTyping) {}
+
+    @PostMapping("/conversations/{id}/typing")
+    public ResponseEntity<Void> updateTypingStatus(
+        @PathVariable Long id,
+        @RequestParam(required = false) Boolean isTyping,
+        @RequestBody(required = false) TypingStatusRequest body
+    ) {
+        boolean typing = (body != null && body.isTyping() != null)
+            ? body.isTyping()
+            : (isTyping != null ? isTyping : true);
+
+        User user = authService.getCurrentAuthenticatedUser();
+        chatService.sendTypingStatus(id, user.getId(), typing);
+        return ResponseEntity.ok().build();
+    }
 }
+
